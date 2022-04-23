@@ -4,7 +4,8 @@
 <script src="{{ asset('js/event_list.js') }}" defer></script>
 @endsection('head')
 @section('content')
-
+  
+@endif
 <div>
   <table>
     <tr>
@@ -12,13 +13,20 @@
       <th>登録日</th>
       <th>開催日</th>
       <th>参加人数</th>
+      <th>操作</th>
     </tr>
     @foreach ($events as $event)
     <tr>
       <td>{{ $event['event_name'] }}</td>
       <td>今日</td>
       <td>明日</td>
-      <td></td>
+      <td>
+        <form action="{{ url('events/'. $event->event_hash)}}" method="POST">
+          @csrf
+          @method('delete')
+          <input type="submit" value="削除">
+        </form>
+      </td>
     </tr>
     @endforeach
   </table>

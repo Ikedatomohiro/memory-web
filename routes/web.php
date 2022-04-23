@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\EventController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\EventListController::class, 'index'])->name('home');
 Route::resource('events', 'App\Http\Controllers\EventListController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
-Route::resource('event/{hash}', 'App\Http\Controllers\EventController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
+Route::resource('event', 'App\Http\Controllers\EventController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 

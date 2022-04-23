@@ -85,5 +85,18 @@ class EventListController extends Controller
         return $hash;
     }
 
+    /**
+     * イベント削除
+     * 
+     * @access public
+     * 
+     */
+    public function destroy($event_hash)
+    {
+        $query = Event::query();
+        $event = $query->where('event_hash', $event_hash)->delete();
+
+        return redirect('/events');
+    }
 
 }

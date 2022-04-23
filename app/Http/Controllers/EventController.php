@@ -18,7 +18,20 @@ class EventController extends Controller
         return view('event.index');
     }
 
+    /**
+     * イベント削除
+     * 
+     * @access public
+     * 
+     */
+    public function destroy($id)
+    {
+        echo $id;
+        echo 'ldjalkjfljllllll';exit();
+
+        return redirect('/events');
+    }
 
 
-    //
+
 }
