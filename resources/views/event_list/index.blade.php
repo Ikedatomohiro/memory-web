@@ -4,7 +4,7 @@
 <script src="{{ asset('js/event_list.js') }}" defer></script>
 @endsection('head')
 @section('content')
-
+@if (count($events) > 0)
 <div>
   <table>
     <tr>
@@ -32,6 +32,7 @@
     @endforeach
   </table>
 </div>
+@endif
 <div class="footer">
   <div class="footer-center">
     <form action="{{ url('events')}}" method="POST">

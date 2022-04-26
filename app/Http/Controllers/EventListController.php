@@ -84,6 +84,7 @@ class EventListController extends Controller
         $guests = $event->guests;
         $param = [
             'guests' => $guests,
+            'event'  => $event,
         ];
         return view('event_list.show', $param);
     }

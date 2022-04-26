@@ -10,8 +10,7 @@
     <tr>
       <th>参加者</th>
       <th>登録日</th>
-      <th>開催日</th>
-
+      <th>参加儀式</th>
       <th>操作</th>
     </tr>
     @foreach ($guests as $guest)
@@ -26,6 +25,8 @@
     @endforeach
   </table>
 </div>
+<a href="{{ url('guest/create')}}">参加者登録</a>
+
 <div class="footer">
   <div class="footer-center">
   </div>

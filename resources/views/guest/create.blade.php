@@ -1,11 +1,12 @@
 <div>
-    <p>イベント名</p>
+    <p>参加者登録</p>
     <div>
         <p>
-            <form action="{{ route('event.store') }}" method="POST">
+            <form action="{{ route('guest.store') }}" method="POST">
                 @csrf
                 <p>
-                    <input type="text" name="event_name" class="">
+                    ご芳名
+                    <input type="text" name="guest_name" class="">
                 </p>
                 <input type="submit" value="登録">
             </form>
