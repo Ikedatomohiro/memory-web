@@ -14,7 +14,7 @@ class GuestController extends Controller
      */
     public function create(Request $request)
     {
-        return view('event_list.create');
+        return view('guest.create');
     }
 
     /**

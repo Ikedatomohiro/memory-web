@@ -13,7 +13,13 @@ class Event extends Model
         'event_name',
         'user_id',
         'event_hash',
-        
     ];
 
+    /**
+     * イベントに登録されている参加者を取得
+     */
+    public function guests()
+    {
+        return $this->hasMany(Guest::class);
+    }
 }

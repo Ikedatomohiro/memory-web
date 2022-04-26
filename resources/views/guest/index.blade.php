@@ -17,7 +17,8 @@
     @foreach ($events as $event)
     <tr>
       <td>
-        <a href="{{ url('events/'. $event->event_hash)}}">{{ $event['event_name'] }}</a>
+        <a href="">{{ $event['event_name'] }}</a>
+        
       </td>
       <td>今日</td>
       <td>明日</td>

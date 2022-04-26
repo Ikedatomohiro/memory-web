@@ -69,6 +69,26 @@ class EventListController extends Controller
     }
 
     /**
+     * イベント詳細
+     * 
+     * @access public
+     * 
+     */
+    public function show($event_hash)
+    {
+        // $guests = Event::
+
+
+        $query = Event::query();
+        $event = $query->where('event_hash', $event_hash)->first();
+        $guests = $event->guests;
+        $param = [
+            'guests' => $guests,
+        ];
+        return view('event_list.show', $param);
+    }
+
+    /**
      * イベント削除
      * 
      * @access public
