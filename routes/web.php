@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\EventListController::class, 'index'])->name('home');
 Route::resource('events', 'App\Http\Controllers\EventListController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('event', 'App\Http\Controllers\EventController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
-
+Route::resource('guest', 'App\Http\Controllers\GuestController', ['only' => ['index', 'show', 'create', 'edit', 'store', 'destroy']]);

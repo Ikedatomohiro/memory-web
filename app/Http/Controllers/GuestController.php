@@ -2,34 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
-use DateTime;
 use Illuminate\Http\Request;
-use App\Http\Requests\EventListRequest;
-use Validator;
 
-class EventListController extends Controller
+class GuestController extends Controller
 {
-    /**
-     * イベントトップページ
-     * 
-     * @access public
-     * 
-     */
-    public function index(Request $request)
-    {
-        $events = Event::all();
-        $param = [
-            'msg'   => '',
-            'events' => $events,
-        ];
-        return view('event_list.index', $param);
-    }
-
     /**
      * イベント作成画面
      * 
-     * @access public
+     * 
      * 
      */
     public function create(Request $request)
@@ -56,10 +36,10 @@ class EventListController extends Controller
         }
         Event::create([
             'event_name' => $request->new_event_name,
-            'event_hash' => \Util::createHash($request->new_event_name),
-        // todo:ユーザーIDを登録
+            'event_hash' => $this->createHash($request->new_event_name),
             'user_id' => 0,
         ]);
+        // todo:ユーザーIDを登録
         // $request->events()->create([
         //     'event_name' => $request->event_name,
         //     'user_id' => 1,
@@ -69,16 +49,21 @@ class EventListController extends Controller
     }
 
     /**
-     * イベント削除
+     * ハッシュ作成
      * 
-     * @access public
-     * 
+     * @access public 
+     * @param  string $event_name イベント名
+     * @return string $hash ハッシュ
      */
-    public function destroy($event_hash)
+    public function createHash($event_name)
     {
-        $query = Event::query();
-        $query->where('event_hash', $event_hash)->delete();
-        return redirect('/events');
+        $t = new DateTime();
+        $time = $t->format('YmdHis');
+        $str = $time . $event_name;
+        $hash = hash('md5', $str);
+        return $hash;
     }
+
+
 
 }

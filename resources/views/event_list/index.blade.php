@@ -4,8 +4,7 @@
 <script src="{{ asset('js/event_list.js') }}" defer></script>
 @endsection('head')
 @section('content')
-  
-@endif
+
 <div>
   <table>
     <tr>
@@ -17,7 +16,10 @@
     </tr>
     @foreach ($events as $event)
     <tr>
-      <td>{{ $event['event_name'] }}</td>
+      <td>
+        <a href="">{{ $event['event_name'] }}</a>
+        
+      </td>
       <td>今日</td>
       <td>明日</td>
       <td>
