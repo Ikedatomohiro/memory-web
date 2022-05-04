@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Event;
 use DateTime;
-use Illuminate\Http\Request;
 use App\Http\Requests\EventListRequest;
 use Validator;
 
@@ -76,11 +76,7 @@ class EventListController extends Controller
      */
     public function show($event_hash)
     {
-        // $guests = Event::
-
-
-        $query = Event::query();
-        $event = $query->where('event_hash', $event_hash)->first();
+        $event = Event::getEvent($event_hash);
         $guests = $event->guests;
         $param = [
             'guests' => $guests,

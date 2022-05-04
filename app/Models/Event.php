@@ -22,4 +22,17 @@ class Event extends Model
     {
         return $this->hasMany(Guest::class);
     }
+
+    /**
+     * ハッシュ値からイベントを取得
+     * 
+     * 
+     * 
+     */
+    public function getEvent($hash)
+    {
+        $query = Event::query();
+        $event = $query->where('event_hash', $hash)->first();
+        return $event;
+    }
 }

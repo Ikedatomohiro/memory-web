@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\EventListController::class, 'index'])->name('home');
+
+// イベント情報
 Route::resource('events', 'App\Http\Controllers\EventListController', ['only' => ['index', 'show', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('event', 'App\Http\Controllers\EventController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
-Route::resource('guest', 'App\Http\Controllers\GuestController', ['only' => ['index', 'show', 'create', 'edit', 'store', 'destroy']]);
+
+// 来客情報
+Route::resource('guest', 'App\Http\Controllers\GuestController', ['only' => ['index', 'show', 'edit', 'store', 'destroy']]);
+Route::get('/guest/{event_hash}/create', [App\Http\Controllers\GuestController::class, 'create'])->name('home');
