@@ -23,6 +23,13 @@ class Event extends Model
         return $this->hasMany(Guest::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+
     /**
      * ハッシュ値からイベントを取得
      * 

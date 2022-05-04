@@ -3,9 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
+use DateTime;
+use App\Http\Requests\EventRequest;
+use App\Repositories\EventRepository;
+use Validator;
 
 class EventController extends Controller
 {
+    /**
+     * コンストラクタ
+     *
+     * @return void
+     */
+    public function __construct(EventRepository $events)
+    {
+        $this->middleware('auth');
+
+        $this->events = $events;
+    }   
     /**
      * イベントトップページ
      * 
@@ -14,8 +30,66 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-    print_r($request['id']);exit();
-        return view('event.index');
+        $events = $this->events->forUser($request->user());
+        $param = [
+            'msg'    => '',
+            'events' => $events,
+        ];
+        return view('event.index', $param);
+    }
+
+    /**
+     * イベント作成画面
+     * 
+     * @access public
+     * 
+     */
+    public function create(Request $request)
+    {
+        return view('event.create');
+    }
+
+    /**
+     * イベント登録処理
+     * 
+     * 
+     */
+    public function store(Request $request)
+    {
+        $event_request = new EventRequest();
+        $validator = Validator::make($request->all(),
+                                    $event_request->rules(),
+                                    $event_request->messages(),
+        );
+        if ($validator->fails()) {
+            return redirect('/events')
+                            ->withErrors($validator)
+                            ->withInput();
+        }
+
+        Event::create([
+            'event_name' => $request->new_event_name,
+            'event_hash' => \Util::createHash($request->new_event_name),
+            'user_id'    => $request->user()->id,
+        ]);
+        return redirect('/events');
+    }
+
+    /**
+     * イベント詳細
+     * 
+     * @access public
+     * 
+     */
+    public function show($event_hash)
+    {
+        $event = Event::getEvent($event_hash);
+        $guests = $event->guests;
+        $param = [
+            'guests' => $guests,
+            'event'  => $event,
+        ];
+        return view('event.show', $param);
     }
 
     /**
@@ -24,14 +98,12 @@ class EventController extends Controller
      * @access public
      * 
      */
-    public function destroy($id)
+    public function destroy($event_hash)
     {
-        echo $id;
-        echo 'ldjalkjfljllllll';exit();
-
+        $query = Event::query();
+        $query->where('event_hash', $event_hash)->delete();
         return redirect('/events');
     }
-
 
 
 }
