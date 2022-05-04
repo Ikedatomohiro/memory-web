@@ -22,3 +22,7 @@ Route::resource('event', 'App\Http\Controllers\EventController', ['only' => ['in
 // 来客情報
 Route::resource('guest', 'App\Http\Controllers\GuestController', ['only' => ['index', 'show', 'edit', 'store', 'destroy']]);
 Route::get('/guest/{event_hash}/create', [App\Http\Controllers\GuestController::class, 'create'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
