@@ -82,6 +82,23 @@ class GuestController extends Controller
     }
 
     /**
+     * 来客詳細
+     * 
+     * 
+     * 
+     */ 
+    public function show($hash)
+    {
+        $guest = Guest::where('guest_hash', $hash)->first();
+        $event = Event::where('event_id', $guest->event_id)->first();
+        $param = [
+            'guest' => $guest,
+            'event' => $event,
+        ];
+        return view('guest.show', $param);
+    }
+
+    /**
      * 入力チェック
      * 
      * 

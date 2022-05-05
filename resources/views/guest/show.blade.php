@@ -6,10 +6,10 @@
             @csrf
             <p>
                 ご芳名
-                <input type="text" name="guest_name" class="">
+                <input type="text" name="guest_name" class="" value="{{ $guest->guest_name }}">
             </p>
             <input type="hidden" name="event_hash" value="{{ $event->event_hash }}">
-            <input type="submit" value="登録">
+            <input type="submit" value="変更">
         </form>
         </p>
         <a href="{{ url('events/'. $event->event_hash)}}">一覧に戻る</a>
