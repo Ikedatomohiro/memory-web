@@ -6,10 +6,23 @@ use Illuminate\Http\Request;
 use App\Models\Guest;
 use App\Models\Event;
 use App\Http\Requests\GuestRequest;
+use App\Repositories\GuestRepository;
 use Validator;
 
 class GuestController extends Controller
 {
+    /**
+     * コンストラクタ
+     *
+     * @return void
+     */
+    public function __construct(GuestRepository $guests)
+    {
+        $this->middleware('auth');
+        $this->guests = $guests;
+        return;
+    }   
+
     /**
      * 参加者登録画面
      * 
@@ -22,9 +35,7 @@ class GuestController extends Controller
         // イベント取得し、なければエラー
         $event = Event::getEvent($request->event_hash);
         // バリデーション作成
-
-
-
+        $this->isEvent($event);
         $param  = [
             'event' => $event,
         ];
@@ -42,10 +53,7 @@ class GuestController extends Controller
         // イベント取得し、なければエラー
         $event = Event::getEvent($request->event_hash);
         // バリデーション作成
-        if (!isset($event->event_id)) {
-            echo 'ぬる';exit();
-        }
-
+        $this->isEvent($event);
         $guest_request = new GuestRequest();
         $validator = Validator::make($request->all(),
                                      $guest_request->rules(),
@@ -88,6 +96,20 @@ class GuestController extends Controller
         // 全部空欄か
 
         // 会社名またはご芳名は必須
+    }
+
+    /**
+     * イベントの存在チェック
+     * 
+     * @access public
+     * @return void
+     */
+    public function isEvent(Event $event)
+    {
+        if (!isset($event->event_id)) {
+            echo '警察に通報しました。連絡をお待ちください。';exit();
+        }
+        return;
     }
 
 }

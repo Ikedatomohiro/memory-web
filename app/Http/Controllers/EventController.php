@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use DateTime;
 use App\Http\Requests\EventRequest;
+use App\Models\Guest;
 use App\Repositories\EventRepository;
+use App\Repositories\GuestRepository;
 use Validator;
 
 class EventController extends Controller
@@ -16,12 +18,14 @@ class EventController extends Controller
      *
      * @return void
      */
-    public function __construct(EventRepository $events)
+    public function __construct(EventRepository $events, GuestRepository $guests)
     {
         $this->middleware('auth');
 
         $this->events = $events;
-    }   
+        $this->guests = $guests;
+    }
+
     /**
      * イベントトップページ
      * 
@@ -81,10 +85,14 @@ class EventController extends Controller
      * @access public
      * 
      */
-    public function show($event_hash)
+    public function show(Request $request, $event_hash)
     {
         $event = Event::getEvent($event_hash);
-        $guests = $event->guests;
+        if (!isset($event->event_id)) {
+            sleep(2);
+            echo '警察に通報しました。連絡をお待ちください。';exit();
+        }
+        $guests = Guest::where('event_id', $event->event_id)->get();
         $param = [
             'guests' => $guests,
             'event'  => $event,
