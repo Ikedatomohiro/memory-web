@@ -19,8 +19,8 @@ Route::get('/', [App\Http\Controllers\EventController::class, 'index'])->name('h
 Route::resource('events', 'App\Http\Controllers\EventController', ['only' => ['index', 'show', 'create', 'edit', 'store', 'destroy']]);
 
 // 来客情報
-Route::resource('guest', 'App\Http\Controllers\GuestController', ['only' => ['index', 'show', 'edit', 'store', 'destroy']]);
-Route::get('/guest/{event_hash}/create', [App\Http\Controllers\GuestController::class, 'create'])->name('home');
+Route::resource('guest', 'App\Http\Controllers\GuestController', ['only' => ['index', 'show', 'edit', 'update', 'store', 'destroy']]);
+Route::get('/guest/create/{event_hash}', [App\Http\Controllers\GuestController::class, 'create'])->name('guest.create');
 
 Auth::routes();
 

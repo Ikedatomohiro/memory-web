@@ -16,7 +16,7 @@
     @foreach ($guests as $guest)
     <tr>
       <td>
-        <a href="{{ url('guest/' . $guest->guest_hash)}}">{{ $guest->guest_name }}</a>
+        <a href="{{ route('guest.edit', ['guest' => $guest->guest_hash]) }}">{{ $guest->guest_name }}</a>
       </td>
       <td>今日</td>
       <td>
@@ -25,7 +25,7 @@
     @endforeach
   </table>
 </div>
-<a href="{{ url('guest/' . $event->event_hash . '/create')}}">参加者登録</a>
+<a href="{{ route('guest.create', ['event_hash' => $event->event_hash]) }}">参加者登録</a>
 <a href="/">ホーム</a>
 
 <div class="footer">

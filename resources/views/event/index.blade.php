@@ -17,12 +17,12 @@
     @foreach ($events as $event)
     <tr>
       <td>
-        <a href="{{ url('events/'. $event->event_hash)}}">{{ $event['event_name'] }}</a>
+        <a href="{{ route('events.show', ['event' => $event->event_hash]) }}">{{ $event['event_name'] }}</a>
       </td>
       <td>今日</td>
       <td>明日</td>
       <td>
-        <form action="{{ url('events/'. $event->event_hash)}}" method="POST">
+        <form action="{{ route('events.show', ['event' => $event->event_hash]) }}" method="POST">
           @csrf
           @method('delete')
           <input type="submit" value="削除">

@@ -32,6 +32,7 @@ class GuestController extends Controller
     public function initParam()
     {
         $param = [
+            'guest'           => new Guest(),
             'relations_other' => '',
             'groups_other'    => '',
             'stored'          => false,
@@ -43,7 +44,7 @@ class GuestController extends Controller
      * 参加者登録画面
      * 
      * @access public
-     * @param object $request ポストパラメータ
+     * @param  object $request ポストパラメータ
      * @return
      */
     public function create(Request $request)
@@ -54,6 +55,9 @@ class GuestController extends Controller
         $this->isEvent($event);
         $param = $this->initParam();
         $param['event'] = $event;
+        $value = $param['guest']->guest_name;
+        // var_dump(htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8', true));
+        // var_dump($param['guest']->guest_name);exit();
         return view('guest.create', $param);
     }
 
@@ -61,6 +65,7 @@ class GuestController extends Controller
      * 参加者登録処理
      * 
      * @access public
+     * @param  object $request ポストパラメータ
      * @return
      */
     public function store(Request $request)
@@ -104,20 +109,33 @@ class GuestController extends Controller
     }
 
     /**
-     * 来客詳細
+     * 来客編集
      * 
-     * 
+     * @access public
      * 
      */ 
-    public function show($hash)
+    public function edit($hash)
     {
         $guest = Guest::where('guest_hash', $hash)->first();
+        $this->isGuest($guest);
         $event = Event::where('event_id', $guest->event_id)->first();
-        $param = [
-            'guest' => $guest,
-            'event' => $event,
-        ];
-        return view('guest.show', $param);
+        $param = $this->initParam();
+        $param['event'] = $event;
+        $param['guest'] = $guest;
+        return view('guest.edit', $param);
+    }
+
+    /**
+     * 来客情報更新
+     * 
+     * 
+     * 
+     */
+    public function update($hash)
+    {
+        $guest = Guest::where('guest_hash', $hash)->first();
+
+        echo 's..sjdljka';exit();
     }
 
     /**
@@ -132,7 +150,7 @@ class GuestController extends Controller
 
         // バリデーション
 
-        // 全部空欄か
+        // ご芳名か会社名のいずれかは入力されているか
 
         // 会社名またはご芳名は必須
     }
@@ -152,12 +170,26 @@ class GuestController extends Controller
     }
 
     /**
-     * 全部空欄はエラーとする
+     * 来客者の存在チェック
+     * 
+     * @access public
+     * @return void
+     */
+    public function isGuest(Guest $guest)
+    {
+        if (!isset($guest->guest_id)) {
+            echo '警察に通報しました。連絡をお待ちください。';exit();
+        }
+        return;
+    }
+
+    /**
+     * ご芳名か会社名のいずれかは入力されているか
      * 
      * 
      * 
      */
-    public function allEmpty(Request $request)
+    public function nameEmpty(Request $request)
     {
 
     }
