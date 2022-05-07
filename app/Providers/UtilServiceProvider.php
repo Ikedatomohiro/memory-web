@@ -13,7 +13,7 @@ class UtilServiceProvider extends ServiceProvider
      */
     public function register()
     {
-		app()->singleton('util', 'App\Lib\Util');
+      app()->singleton('util', 'App\Lib\Util');
     }
 
     /**

@@ -133,8 +133,8 @@ class GuestController extends Controller
      */
     public function update($hash)
     {
-        $guest = Guest::where('guest_hash', $hash)->first();
-
+        Guest::where('guest_hash', $hash)->first();
+        
         echo 's..sjdljka';exit();
     }
 
@@ -161,10 +161,10 @@ class GuestController extends Controller
      * @access public
      * @return void
      */
-    public function isEvent(Event $event)
+    public function isEvent(?Event $event)
     {
         if (!isset($event->event_id)) {
-            echo '警察に通報しました。連絡をお待ちください。';exit();
+            \Util::alertToPolice();
         }
         return;
     }
@@ -175,10 +175,10 @@ class GuestController extends Controller
      * @access public
      * @return void
      */
-    public function isGuest(Guest $guest)
+    public function isGuest(?Guest $guest)
     {
         if (!isset($guest->guest_id)) {
-            echo '警察に通報しました。連絡をお待ちください。';exit();
+            \Util::alertToPolice();
         }
         return;
     }
@@ -191,6 +191,19 @@ class GuestController extends Controller
      */
     public function nameEmpty(Request $request)
     {
+
+    }
+
+    /**
+     * 来客者削除
+     * 
+     * @access public
+     * 
+     */
+    public function destroy(Request $request)
+    {
+        Guest::where('guest_hash', $request->guest)->update(['del_flg' => 1]);
+
 
     }
 

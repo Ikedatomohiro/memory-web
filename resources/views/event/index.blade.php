@@ -19,8 +19,15 @@
       <td>
         <a href="{{ route('events.show', ['event' => $event->event_hash]) }}">{{ $event['event_name'] }}</a>
       </td>
-      <td>今日</td>
-      <td>明日</td>
+      <td>
+        {{ optional($event->created_at)->format('Y年 n月 j日') }}
+      </td>
+      <td>
+        {{ optional($event->hold_date)->format('Y年 n月 j日') }}
+      </td>
+      <td>
+        
+      </td>
       <td>
         <form action="{{ route('events.show', ['event' => $event->event_hash]) }}" method="POST">
           @csrf
@@ -35,12 +42,9 @@
 @endif
 <div class="footer">
   <div class="footer-center">
-    <form action="{{ url('events')}}" method="POST">
+    <form action="{{ route('events.store')}}" method="POST">
       @csrf
       <input type="text" name="new_event_name" value="{{ old('new_event_name') }}"/>
-      <p class="button-round create-new">
-        新規作成
-      </p>
       @error ('new_event_name')
         {{ $message }}
       @enderror

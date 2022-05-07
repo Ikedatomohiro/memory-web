@@ -14,18 +14,19 @@ class Event extends Model
         'user_id',
         'event_hash',
     ];
+    protected $dates = ['hold_date'];
 
     /**
      * イベントに登録されている参加者を取得
      */
     public function guests()
     {
-        return $this->hasMany(Guest::class);
+        return $this->hasMany(Guest::class, 'event_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 
@@ -38,8 +39,10 @@ class Event extends Model
      */
     public function getEvent($hash)
     {
-        $query = Event::query();
-        $event = $query->where('event_hash', $hash)->first();
+        $event = Event::where([
+            'event_hash' => $hash,
+            'del_flg'    => 0,
+            ])->first();
         return $event;
     }
 }

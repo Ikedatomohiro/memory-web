@@ -21,6 +21,19 @@ class Util
         $hash = hash('md5', $str);
         return $hash;
     }
+
+    /**
+     * 警察に通報する
+     * 
+     * @access public
+     * 
+     * 
+     */
+    public function alertToPolice()
+    {
+        sleep(2);
+        echo '警察に通報しました。連絡をお待ちください。';exit();
+    }
 }
 
 

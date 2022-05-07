@@ -10,6 +10,7 @@ use App\Models\Guest;
 use App\Repositories\EventRepository;
 use App\Repositories\GuestRepository;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -35,6 +36,7 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $events = $this->events->forUser($request->user());
+        // print_r($events);exit();
         $param = [
             'msg'    => '',
             'events' => $events,
@@ -89,10 +91,12 @@ class EventController extends Controller
     {
         $event = Event::getEvent($event_hash);
         if (!isset($event->event_id)) {
-            sleep(2);
-            echo '警察に通報しました。連絡をお待ちください。';exit();
+            \Util::alertToPolice();
         }
-        $guests = Guest::where('event_id', $event->event_id)->get();
+        $guests = Guest::where(
+            ['event_id' => $event->event_id,
+             'del_flg'  => 0,]
+            )->get();
         $param = [
             'guests' => $guests,
             'event'  => $event,
@@ -101,15 +105,23 @@ class EventController extends Controller
     }
 
     /**
-     * イベント削除
+     * イベント削除（論理削除）
      * 
      * @access public
+     * @param  string $event_hash イベントハッシュ
      * 
      */
     public function destroy($event_hash)
     {
-        $query = Event::query();
-        $query->where('event_hash', $event_hash)->delete();
+        $event = Event::where('event_hash', $event_hash)->first();
+        DB::beginTransaction();
+        try {
+            Event::where('event_id', $event->event_id)->update(['del_flg' => 1]);
+            Guest::where('event_id', $event->event_id)->update(['del_flg' => 1]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
         return redirect('/events');
     }
 
