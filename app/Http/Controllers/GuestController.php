@@ -21,7 +21,23 @@ class GuestController extends Controller
         $this->middleware('auth');
         $this->guests = $guests;
         return;
-    }   
+    }
+
+    /**
+     * パラメータ
+     * 
+     * @access public
+     * 
+     */
+    public function initParam()
+    {
+        $param = [
+            'relations_other' => '',
+            'groups_other'    => '',
+            'stored'          => false,
+        ];
+        return $param;
+    }
 
     /**
      * 参加者登録画面
@@ -36,9 +52,8 @@ class GuestController extends Controller
         $event = Event::getEvent($request->event_hash);
         // バリデーション作成
         $this->isEvent($event);
-        $param  = [
-            'event' => $event,
-        ];
+        $param = $this->initParam();
+        $param['event'] = $event;
         return view('guest.create', $param);
     }
 
@@ -46,7 +61,7 @@ class GuestController extends Controller
      * 参加者登録処理
      * 
      * @access public
-     * @return 
+     * @return
      */
     public function store(Request $request)
     {
@@ -64,20 +79,27 @@ class GuestController extends Controller
                             ->withErrors($validator)
                             ->withInput();
         }
-
+        $retuals   = !is_null($request->retuals) ? implode(',', $request->retuals) : null;
+        $relations = !is_null($request->relations) ? implode(',', $request->relations) : null;
+        $groups    = !is_null($request->groups) ? implode(',', $request->groups) : null;
         Guest::create([
-            'event_id'     => $event->event_id,
-            'guest_hash'   => \Util::createHash($request->guest_name),
-            'guest_name'   => $request->guest_name,
-            'company_name' => $request->company_name,
-            'address'      => $request->address,
-            'tel'          => $request->tel,
-            'description'  => $request->description,
-            'retuals'      => $request->retuals,
+            'event_id'        => $event->event_id,
+            'guest_hash'      => \Util::createHash($request->guest_name),
+            'guest_name'      => $request->guest_name,
+            'company_name'    => $request->company_name,
+            'zip_code'        => $request->zip_code,
+            'address'         => $request->address,
+            'tel'             => $request->tel,
+            'description'     => $request->description,
+            'retuals'         => $retuals,
+            'relations'       => $relations,
+            'relations_other' => $request->relations_other,
+            'groups'          => $groups,
+            'groups_other'    => $request->groups_other,
         ]);
-        $param  = [
-            'event' => $event,
-        ];
+        $param = $this->initParam();
+        $param['event'] = $event;
+        $param['stored'] = true;
         return view('guest.create', $param);
     }
 
@@ -101,7 +123,7 @@ class GuestController extends Controller
     /**
      * 入力チェック
      * 
-     * 
+     * @access public
      * 
      */
     public function inputCheck()
@@ -127,6 +149,17 @@ class GuestController extends Controller
             echo '警察に通報しました。連絡をお待ちください。';exit();
         }
         return;
+    }
+
+    /**
+     * 全部空欄はエラーとする
+     * 
+     * 
+     * 
+     */
+    public function allEmpty(Request $request)
+    {
+
     }
 
 }

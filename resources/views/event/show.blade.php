@@ -26,6 +26,7 @@
   </table>
 </div>
 <a href="{{ url('guest/' . $event->event_hash . '/create')}}">参加者登録</a>
+<a href="/">ホーム</a>
 
 <div class="footer">
   <div class="footer-center">
