@@ -4,7 +4,7 @@
             ご参加
             @foreach ($retuals as $key => $retual)
                 @if (!is_null($guest->retuals) && in_array($key, $guest->retuals))
-            <input type="checkbox" name="retuals[{{ $key }}]" value="{{ $key }}" checked>{{ $retual }}
+            <input type="checkbox" name="retuals[{{ $key }}]" value="{{ $key }}" {{ (!is_null($guest->retuals) && in_array($key, $guest->retuals)) ? 'checked' : '' }} />{{ $retual }}
                 @else
             <input type="checkbox" name="retuals[{{ $key }}]" value="{{ $key }}">{{ $retual }}
                 @endif
@@ -33,22 +33,14 @@
         <p>
             どなたのご関係ですか
             @foreach ($relations as $key => $relation)
-                @if (!is_null($guest->relations) && in_array($key, $guest->relations))
-            <input type="checkbox" name="relations[{{ $key }}]" value="{{ $key }}" checked>{{ $relation }}
-                @else
-            <input type="checkbox" name="relations[{{ $key }}]" value="{{ $key }}">{{ $relation }}
-                @endif
+            <input type="checkbox" name="relations[{{ $key }}]" value="{{ $key }}" {{ (!is_null($guest->relations) && in_array($key, $guest->relations)) ? 'checked' : '' }} />{{ $relation }}
             @endforeach
             <input type="text" name="relations_other" value="{{ old('relations_other', $guest->relations_other) }}">
         </p>
         <p>
             どのようなご関係ですか
             @foreach ($groups as $key => $group)
-                @if (!is_null($guest->groups) && in_array($key, $guest->groups))
-            <input type="checkbox" name="groups[{{ $key }}]" value="{{ $key }}" checked>{{ $group }}
-                @else
-            <input type="checkbox" name="groups[{{ $key }}]" value="{{ $key }}">{{ $group }}
-                @endif
+            <input type="checkbox" name="groups[{{ $key }}]" value="{{ $key }}" {{ (!is_null($guest->groups) && in_array($key, $guest->groups)) ? 'checked' : '' }} />{{ $group }}
             @endforeach
             <input type="text" name="groups_other" value="{{ old('groups_other', $guest->groups_other) }}">
         </p>
