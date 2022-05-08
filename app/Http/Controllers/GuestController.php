@@ -117,6 +117,10 @@ class GuestController extends Controller
     public function edit($hash)
     {
         $guest = Guest::where('guest_hash', $hash)->first();
+        $guest->retuals = explode(',', $guest->retuals);
+        
+        print_r($guest->retuals);exit();
+
         $this->isGuest($guest);
         $event = Event::where('event_id', $guest->event_id)->first();
         $param = $this->initParam();

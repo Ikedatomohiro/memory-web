@@ -26,7 +26,7 @@
         {{ optional($event->hold_date)->format('Y年 n月 j日') }}
       </td>
       <td>
-        
+        {{ $event->guest_count }} 名
       </td>
       <td>
         <form action="{{ route('events.show', ['event' => $event->event_hash]) }}" method="POST">

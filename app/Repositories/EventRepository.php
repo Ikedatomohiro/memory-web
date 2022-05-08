@@ -3,6 +3,7 @@
 namespace App\Repositories;
  
 use App\Models\User;
+use App\Models\Event;
 use Illuminate\Support\Facades\DB;
  
 class EventRepository
@@ -50,12 +51,21 @@ class EventRepository
         //          ->get();
         // return $event;
 
-
-
-        return $user->events()
-            ->where('del_flg', 0)
-            ->orderBy('created_at', 'asc')
+        $events = $user->events()
+            ->where('events.del_flg', 0)
+            ->leftJoin('guests', function ($join) {
+                $join->on('events.event_id', '=', 'guests.event_id')
+                    ->where('guests.del_flg', '=', 0);
+            })
+            ->select(
+                 'events.*'
+                 ,DB::raw("count(guests.guest_id) as guest_count")
+            )
+            ->groupBy('events.event_id')
+            ->orderBy('events.created_at', 'asc')
             ->get();
+            // dd($events->toSql(), $events->getBindings()); ← get()する前で止めると、toSql()関数（発行したSQLを確認する）が使える。
+        return $events;
     }
 }
  
