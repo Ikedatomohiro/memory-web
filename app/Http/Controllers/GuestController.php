@@ -36,6 +36,9 @@ class GuestController extends Controller
             'relations_other' => '',
             'groups_other'    => '',
             'stored'          => false,
+            'retuals'         => $this->retualsList(),
+            'relations'       => $this->relationsList(),
+            'groups'          => $this->groupsList(),
         ];
         return $param;
     }
@@ -116,17 +119,20 @@ class GuestController extends Controller
      */ 
     public function edit($hash)
     {
+        // 来客データ取得
         $guest = Guest::where('guest_hash', $hash)->first();
         $guest->retuals = explode(',', $guest->retuals);
-        
-        print_r($guest->retuals);exit();
-
+        $guest->relations = explode(',', $guest->relations);
+        $guest->groups = explode(',', $guest->groups);
+        // 来客データの存在確認
         $this->isGuest($guest);
+        // イベント情報取得
         $event = Event::where('event_id', $guest->event_id)->first();
+        // パラメータセット
         $param = $this->initParam();
         $param['event'] = $event;
         $param['guest'] = $guest;
-        return view('guest.edit', $param);
+        return view('guest.edit', $param);        
     }
 
     /**
@@ -209,6 +215,60 @@ class GuestController extends Controller
         Guest::where('guest_hash', $request->guest)->update(['del_flg' => 1]);
 
 
+    }
+
+    /**
+     * 儀式リスト
+     * 
+     * @access public
+     * @return array $retuals
+     */
+    public function retualsList()
+    {
+        $retuals = [
+            '通夜',
+            '告別式',
+        ];
+        return $retuals;
+    }
+
+    /**
+     * 儀式リスト
+     * 
+     * @access public
+     * @return array $relations
+     */
+    public function relationsList()
+    {
+        $relations = [
+            '故人様',
+            '喪主様',
+            'ご家族',
+            'その他',
+        ];
+        return $relations;
+    }
+
+    /**
+     * 儀式リスト
+     * 
+     * @access public
+     * @return array $groups
+     */
+    public function groupsList()
+    {
+        $groups = [
+            '会社関係',
+            'お取引先',
+            '学校関係',
+            '官公庁',
+            '各種団体',
+            '町内会',
+            'ご友人',
+            'ご親戚',
+            'その他',
+        ];
+        return $groups;
     }
 
 }
