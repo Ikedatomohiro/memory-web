@@ -30,7 +30,7 @@
         </p>
         <p>
             住所
-            <input type="text" name="address" class="" value="{{ old('address', $guest->address) }}">
+            <input type="text" id="address" name="address" class="" value="{{ old('address', $guest->address) }}">
         </p>
         <p>
             電話番号

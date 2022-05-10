@@ -25,3 +25,5 @@ Route::get('/guest/create/{event_hash}', [App\Http\Controllers\GuestController::
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/zipcode', [App\Http\Controllers\ZipCodeController::class, 'getZipCode']);
