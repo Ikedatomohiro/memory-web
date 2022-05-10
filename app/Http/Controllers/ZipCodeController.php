@@ -17,7 +17,7 @@ class ZipCodeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * 郵便番号化から住所を取得
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
