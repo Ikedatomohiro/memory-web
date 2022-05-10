@@ -1,3 +1,8 @@
+@section('head')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{ asset('js/guest.js') }}" defer></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+@endsection('head')
 <div>
     <p>
         <p>
@@ -12,7 +17,8 @@
         </p>
         <p>
             ご芳名
-            <input type="text" name="guest_name" class="" value="{{ old('guest_name', $guest->guest_name) }}">
+            <input type="text" name="guest_name" class="input_area" value="{{ old('guest_name', $guest->guest_name) }}">&nbsp;
+            <span class="delete"><i class="fas fa-arrow-alt-circle-left"></i></span>
         </p>
         <p>
             会社名

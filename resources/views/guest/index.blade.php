@@ -1,8 +1,5 @@
 @extends('layouts.app')
 @section('title', '来客リスト')
-@section('head')
-<script src="{{ asset('js/event_list.js') }}" defer></script>
-@endsection('head')
 @section('content')
 
 <div>
