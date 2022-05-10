@@ -29,21 +29,4 @@ class Event extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-
-
-    /**
-     * ハッシュ値からイベントを取得
-     * 
-     * 
-     * 
-     */
-    public function getEvent($hash)
-    {
-        $event = Event::where([
-            'event_hash' => $hash,
-            'del_flg'    => 0,
-            ])->first();
-        return $event;
-    }
 }

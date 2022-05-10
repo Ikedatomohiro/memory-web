@@ -89,7 +89,7 @@ class EventController extends Controller
      */
     public function show(Request $request, $event_hash)
     {
-        $event = Event::getEvent($event_hash);
+        $event = $this->events->getEvent($event_hash);
         if (!isset($event->event_id)) {
             \Util::alertToPolice();
         }

@@ -7,6 +7,7 @@ use App\Models\Guest;
 use App\Models\Event;
 use App\Http\Requests\GuestRequest;
 use App\Repositories\GuestRepository;
+use App\Repositories\EventRepository;
 use Validator;
 
 class GuestController extends Controller
@@ -40,10 +41,11 @@ class GuestController extends Controller
      *
      * @return void
      */
-    public function __construct(GuestRepository $guests)
+    public function __construct(GuestRepository $guests, EventRepository $events)
     {
         $this->middleware('auth');
         $this->guests = $guests;
+        $this->events = $events;
         return;
     }
 
@@ -77,7 +79,7 @@ class GuestController extends Controller
     public function create(Request $request)
     {
         // イベント取得し、なければエラー
-        $event = Event::getEvent($request->event_hash);
+        $event = $this->events->getEvent($request->event_hash);
         // バリデーション作成
         $this->isEvent($event);
         $param = $this->initParam();
@@ -178,7 +180,7 @@ class GuestController extends Controller
     public function inputCheck(Request $request)
     {
         // イベント取得し、なければエラー
-        $this->event = Event::getEvent($request->event_hash);
+        $this->event = $this->events->getEvent($request->event_hash);
         // バリデーション作成
         $this->isEvent($this->event);
         $guest_request = new GuestRequest();

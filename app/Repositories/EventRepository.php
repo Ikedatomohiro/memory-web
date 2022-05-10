@@ -46,10 +46,6 @@ class EventRepository
         //         events.event_id
         // SQL;
         // return DB::select($sql, [$user->id]);
-        // $event = Event::select()
-        //          ->join('guests', 'event_id', '=', 'event_id')
-        //          ->get();
-        // return $event;
 
         $events = $user->events()
             ->where('events.del_flg', 0)
@@ -62,10 +58,36 @@ class EventRepository
                  ,DB::raw("count(guests.guest_id) as guest_count")
             )
             ->groupBy('events.event_id')
+            ->groupBy('events.user_id')
+            ->groupBy('events.event_hash')
+            ->groupBy('events.event_name')
+            ->groupBy('events.hold_date')
+            ->groupBy('events.hold_place')
+            ->groupBy('events.organizer_name')
+            ->groupBy('events.description')
+            ->groupBy('events.del_flg')
+            ->groupBy('events.created_at')
+            ->groupBy('events.updated_at')
             ->orderBy('events.created_at', 'asc')
             ->get();
             // dd($events->toSql(), $events->getBindings()); ← get()する前で止めると、toSql()関数（発行したSQLを確認する）が使える。
         return $events;
     }
+
+    /**
+     * ハッシュ値からイベントを取得
+     * 
+     * @access public
+     * 
+     */
+    public function getEvent($hash)
+    {
+        $event = Event::where([
+            'event_hash' => $hash,
+            'del_flg'    => 0,
+            ])->first();
+        return $event;
+    }
+
 }
  
