@@ -250,4 +250,44 @@ class GuestController extends Controller
 
     }
 
+    /**
+     * CSVファイルダウンロード
+     * 
+     * 
+     * 
+     */
+    public function download($hash)
+    {
+        // コールバック関数に１行ずつ書き込んでいく処理を記述
+        $callback = function () use ($hash) {
+            // 出力バッファをopen
+            $stream = fopen('php://output', 'w');
+            // 文字コードをShift-JISに変換
+            stream_filter_prepend($stream, 'convert.iconv.utf-8/cp932//TRANSLIT');
+            // ヘッダー行
+            fputcsv($stream, [
+            'ID',
+            ]);
+            // データ
+            $guests = Guest::orderBy('guest_id', 'desc');
+            // ２行目以降の出力
+            foreach ($guests->cursor() as $guest) {
+                fputcsv($stream, [
+                    $guest->guest_id,
+                    $guest->guest_name,
+                ]);
+            }
+            fclose($stream);
+        };
+        
+        // 保存するファイル名
+        $filename = sprintf('guest-%s.csv', date('YmdHis'));
+        
+        // ファイルダウンロードさせるために、ヘッダー出力を調整
+        $header = [
+            'Content-Type' => 'application/octet-stream',
+        ];
+        
+        return response()->streamDownload($callback, $filename, $header);
+    }
 }

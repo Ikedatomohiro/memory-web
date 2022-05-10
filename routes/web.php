@@ -21,6 +21,8 @@ Route::resource('events', 'App\Http\Controllers\EventController', ['only' => ['i
 // 来客情報
 Route::resource('guest', 'App\Http\Controllers\GuestController', ['only' => ['index', 'show', 'edit', 'update', 'store', 'destroy']]);
 Route::get('/guest/create/{event_hash}', [App\Http\Controllers\GuestController::class, 'create'])->name('guest.create');
+// 来客情報CSVダウンロード
+Route::get('/guest/download/{event_hash}', [App\Http\Controllers\GuestController::class, 'download'])->name('guest.download');
 
 Auth::routes();
 
