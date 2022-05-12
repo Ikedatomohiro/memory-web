@@ -1,3 +1,6 @@
+@extends('layouts.app')
+@section('title', '来客者登録')
+@section('content')
 <div>
     <p>参加者詳細</p>
     <form action="{{ route('guest.update', ['guest' => $guest->guest_hash]) }}" method="POST">
@@ -13,3 +16,4 @@
     </form>
     <a href="{{ route('events.show', ['event' => $event->event_hash]) }}">来客者一覧に戻る</a>
 </div>
+@endsection

@@ -88,3 +88,8 @@ tr:last-child td {
 	cursor:pointer;
 	color:#f00;
 }
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}

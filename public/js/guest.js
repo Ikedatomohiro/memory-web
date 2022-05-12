@@ -1,5 +1,5 @@
 $('.delete').on('click', function () {
-    var elm = $(this).prev('.input_area');
+    var elm = $(this).prev('.input-area');
     var str = elm.val();
     str2 = str.replace(/.$/, '');
     elm.val(str2);
@@ -31,4 +31,27 @@ $('#zip_code').on('input', function () {
         });
     }
 });
+if ($('input[type="checkbox"]').prop('checked')) {
+    $('input[type="checkbox"]').parent().css('background-color', 'red');
+    console.log('red');
+} else {
+    $('input[type="checkbox"]').parent().css('background-color', '');
+}
 
+$('input[type="checkbox"]').on('click', function() {
+    if ($(this).prop('checked')) {
+        $(this).parent().animate({
+            'backgroundColor' : '#2a61fe',
+            'color': '#ffffff'
+          }, 200);
+    } else {
+        $(this).parent().animate({
+            'backgroundColor' : 'transparent',
+            'color': '#000000'
+          }, 200);
+    }
+});
+
+$('#regist-btn').on('click', function() {
+    $('#regist').trigger("click");
+});
