@@ -31,6 +31,7 @@ $('#zip_code').on('input', function () {
         });
     }
 });
+
 if ($('input[type="checkbox"]').prop('checked')) {
     $('input[type="checkbox"]').parent().css('background-color', 'red');
     console.log('red');
@@ -52,6 +53,7 @@ $('input[type="checkbox"]').on('click', function() {
     }
 });
 
-$('#regist-btn').on('click', function() {
-    $('#regist').trigger("click");
+$('.execution-button').on('click', function() {
+    console.log('clickclick');
+    $(this).next('.exexcute').trigger('click');
 });

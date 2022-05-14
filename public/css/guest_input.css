@@ -1,7 +1,7 @@
 .header {
-    height: 30px;
     display: flex;
     justify-content: center;
+    vertical-align: middle;
 }
 
 .header p {
@@ -12,10 +12,18 @@
     text-align: right;
 }
 
+.back-button {
+    margin-left: auto;
+}
+
 .input-item {
     display: flex;
     align-items: center;
     margin: 20px 20px;
+}
+
+.input-item input {
+    border-radius: 5px;
 }
 
 .title {
@@ -30,7 +38,7 @@
 }
 
 .checkbox-label {
-    margin: 10px 10px 10px 0;
+    margin: 10px 30px 10px 0;
     padding: 10px 20px;
     border-radius: 5px;
     border: solid 1px #2a61fe
@@ -45,9 +53,28 @@
 }
 
 .button {
-    font-size: 2rem;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.3rem;
     border-radius: 5px;
-    background-color: greenyellow;
+    background-color: royalblue;
+    color: white;
+}
+
+.button-s {
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: royalblue;
+    color: white;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button:active {
+    background-color: cornflowerblue;
 }
 
 li, span label, input, p {

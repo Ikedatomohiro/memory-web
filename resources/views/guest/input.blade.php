@@ -22,35 +22,35 @@
             <span class="title">
                 ご芳名
             </span>
-            <input type="text" name="guest_name" class="input-area" value="{{ old('guest_name', $guest->guest_name) }}" placeholder="例）山田　太郎">&nbsp;
+            <input type="text" name="guest_name" class="input-area" value="{{ old('guest_name', $guest->guest_name) }}" placeholder="例）山田　太郎" autocomplete="off">&nbsp;
             <span class="delete"><i class="fas fa-arrow-alt-circle-left"></i></span>
         </li>
         <li class="input-item">
             <span class="title">
                 会社名
             </span>
-            <input type="text" name="company_name" class="input-area" value="{{ old('company_name', $guest->company_name) }}" placeholder="例）（株）やまだたろう">&nbsp;
+            <input type="text" name="company_name" class="input-area" value="{{ old('company_name', $guest->company_name) }}" placeholder="例）（株）やまだたろう" autocomplete="off">&nbsp;
             <span class="delete"><i class="fas fa-arrow-alt-circle-left"></i></span>
         </li>
         <li class="input-item">
             <span class="title">
                 郵便番号
             </span>
-            <input type="text" id="zip_code" name="zip_code" class="input-area" value="{{ old('zip_code', $guest->zip_code) }}" placeholder="例）100-0001">&nbsp;
+            <input type="text" id="zip_code" name="zip_code" class="input-area" value="{{ old('zip_code', $guest->zip_code) }}" placeholder="例）100-0001" autocomplete="off">&nbsp;
             <span class="delete"><i class="fas fa-arrow-alt-circle-left"></i></span>
         </li>
         <li class="input-item">
             <span class="title">
                 住所
             </span>
-            <input type="text" id="address" name="address" class="input-area" value="{{ old('address', $guest->address) }}" placeholder="例）東京都千代田区千代田">&nbsp;
+            <input type="text" id="address" name="address" class="input-area" value="{{ old('address', $guest->address) }}" placeholder="例）東京都千代田区千代田" autocomplete="off">&nbsp;
             <span class="delete"><i class="fas fa-arrow-alt-circle-left"></i></span>
         </li>
         <li class="input-item">
             <span class="title">
                 電話番号
             </span>
-            <input type="tel" name="tel" class="input-area" value="{{ old('tel', $guest->tel) }}" placeholder="例）03-1234-5678">&nbsp;
+            <input type="tel" name="tel" class="input-area" value="{{ old('tel', $guest->tel) }}" placeholder="例）03-1234-5678" autocomplete="off">&nbsp;
             <span class="delete"><i class="fas fa-arrow-alt-circle-left"></i></span>
         </li>
         <li class="input-item">
@@ -67,7 +67,7 @@
                 <br>
                 @endif
                 @endforeach
-                <input type="text" name="relations_other" class="input-other" value="{{ old('relations_other', $guest->relations_other) }}">
+                <input type="text" name="relations_other" class="input-other" value="{{ old('relations_other', $guest->relations_other) }}" autocomplete="off">
             </p>
         </li>
         <li class="input-item">
@@ -84,7 +84,7 @@
                 <br>
                 @endif
                 @endforeach
-                <input type="text" name="groups_other" class="input-other" value="{{ old('groups_other', $guest->groups_other) }}">
+                <input type="text" name="groups_other" class="input-other" value="{{ old('groups_other', $guest->groups_other) }}" autocomplete="off">
             </p>
         </li>
         <input type="hidden" name="event_hash" value="{{ $event->event_hash }}">
