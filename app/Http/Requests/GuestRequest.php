@@ -28,6 +28,7 @@ class GuestRequest extends FormRequest
     public function rules()
     {
         return [
+            'names' => 'required_without_all:guest_name, company_name',
             // 'guest_event_name' => 'required|max:255',
         ];
     }
@@ -40,7 +41,7 @@ class GuestRequest extends FormRequest
     public function messages()
     {
         return [
-            'guest_event_name.required' => 'ご芳名を入力してください',
+            'names.required_without_all' => 'ご芳名または会社名を入力してください',
         ];
     }
 }

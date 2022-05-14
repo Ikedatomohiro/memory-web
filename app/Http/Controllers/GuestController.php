@@ -98,6 +98,18 @@ class GuestController extends Controller
     {
         // 入力チェック
         $this->inputCheck($request);
+        $param = $this->initParam();
+        $param['event'] = $this->event;
+        $guest_request = new GuestRequest();
+        $validator = Validator::make($request->all(),
+                                     $guest_request->rules(),
+                                     $guest_request->messages(),
+        );
+        if ($validator->fails()) {
+            return redirect(route('guest.create', ['event_hash' => $this->event->event_hash]))
+                            ->withErrors($validator)
+                            ->withInput();
+        }
         Guest::create([
             'event_id'        => $this->event->event_id,
             'guest_hash'      => \Util::createHash($request->guest_name),
@@ -113,8 +125,6 @@ class GuestController extends Controller
             'groups'          => !is_null($request->groups) ? implode(',', $request->groups) : null,
             'groups_other'    => $request->groups_other,
         ]);
-        $param = $this->initParam();
-        $param['event'] = $this->event;
         $param['stored'] = true;
         return view('guest.create', $param);
     }
@@ -183,16 +193,6 @@ class GuestController extends Controller
         $this->event = $this->events->getEvent($request->event_hash);
         // バリデーション作成
         $this->isEvent($this->event);
-        $guest_request = new GuestRequest();
-        $validator = Validator::make($request->all(),
-                                     $guest_request->rules(),
-                                     $guest_request->messages(),
-        );
-        if ($validator->fails()) {
-            return redirect('/events')
-                            ->withErrors($validator)
-                            ->withInput();
-        }
         // ご芳名か会社名のいずれかは入力されているか
 
         // 会社名またはご芳名は必須

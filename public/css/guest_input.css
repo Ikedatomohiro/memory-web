@@ -50,6 +50,7 @@
 
 .input-other {
     height: 50px;
+    font-size: 1.5rem;
 }
 
 .button {
@@ -77,6 +78,28 @@
     background-color: cornflowerblue;
 }
 
-li, span label, input, p {
+.delete {
+    width: 52px;
+    height: 38px;
+    background-image: url('../img/backspace.svg');
+    background-size: cover;
+}
+
+.delete:active {
+    width: 52px;
+    height: 38px;
+    background-image: url('../img/backspace-active.svg');
+    background-size: cover;
+}
+
+span .delete-s {
+    display: block;
+    width: 52px;
+    height: 38px;
+    background-image: url('../img/backspace.svg');
+    background-size: cover;
+}
+
+li, span, label, input, p {
     user-select: none;
 }

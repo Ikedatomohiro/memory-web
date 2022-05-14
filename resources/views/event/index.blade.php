@@ -45,10 +45,10 @@
     <form action="{{ route('events.store')}}" method="POST">
       @csrf
       <input type="text" name="new_event_name" value="{{ old('new_event_name') }}"/>
+      <input type="submit" value="作成する">
       @error ('new_event_name')
         {{ $message }}
       @enderror
-      <input type="submit" value="作成する">
       {{ $msg }}
     </form>
   </div>
