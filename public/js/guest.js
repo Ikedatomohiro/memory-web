@@ -1,5 +1,13 @@
-$('.delete').on('click', function () {
-    var elm = $(this).prev('.input-area');
+$(function(){
+    var chkboxes = $( 'input[type=checkbox]' );
+    chkboxes.filter( ':checked' ).parent().css({
+        'background-color': '#2a61fe',
+        'color': '#ffffff',
+    });
+});
+
+$('.delete, .delete-s').on('click', function () {
+    var elm = $(this).prev('.input-area, .input-other');
     var str = elm.val();
     str2 = str.replace(/.$/, '');
     elm.val(str2);
@@ -32,21 +40,15 @@ $('#zip_code').on('input', function () {
     }
 });
 
-if ($('input[type="checkbox"]').prop('checked')) {
-    $('input[type="checkbox"]').parent().css('background-color', 'red');
-    console.log('red');
-} else {
-    $('input[type="checkbox"]').parent().css('background-color', '');
-}
 
 $('input[type="checkbox"]').on('click', function() {
     if ($(this).prop('checked')) {
-        $(this).parent().animate({
+        $(this).parent('.checkbox-label').animate({
             'backgroundColor' : '#2a61fe',
             'color': '#ffffff'
           }, 200);
     } else {
-        $(this).parent().animate({
+        $(this).parent('.checkbox-label').animate({
             'backgroundColor' : 'transparent',
             'color': '#000000'
           }, 200);

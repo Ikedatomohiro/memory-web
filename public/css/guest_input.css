@@ -50,6 +50,7 @@
 
 .input-other {
     height: 50px;
+    width: 80%;
     font-size: 1.5rem;
 }
 
@@ -82,22 +83,27 @@
     width: 52px;
     height: 38px;
     background-image: url('../img/backspace.svg');
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .delete:active {
     width: 52px;
     height: 38px;
     background-image: url('../img/backspace-active.svg');
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
-span .delete-s {
-    display: block;
-    width: 52px;
-    height: 38px;
+.delete-s {
+    display: inline-block;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    padding: 0 auto 0;
     background-image: url('../img/backspace.svg');
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 li, span, label, input, p {

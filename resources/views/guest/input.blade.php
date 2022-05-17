@@ -80,12 +80,12 @@
                     <input type="checkbox" name="groups[{{ $key }}]" value="{{ $key }}" {{ (!is_null($guest->groups) && in_array($key, $guest->groups)) ? 'checked' : '' }} style="display: none" />
                     <span>{{ $group }}</span>
                 </label>
-                @if (($loop->iteration % 4 == 0 && $loop->iteration != $loop->count) || $loop->iteration == $loop->count
-                - 1)
+                @if (($loop->iteration % 4 == 0 && $loop->iteration != $loop->count) || $loop->iteration == $loop->count - 1)
                 <br>
                 @endif
                 @endforeach
                 <input type="text" name="groups_other" class="input-other" value="{{ old('groups_other', $guest->groups_other) }}" autocomplete="off">
+                <span class="delete-s"></span>
             </p>
         </li>
         <input type="hidden" name="event_hash" value="{{ $event->event_hash }}">

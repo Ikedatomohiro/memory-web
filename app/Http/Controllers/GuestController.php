@@ -70,6 +70,12 @@ class GuestController extends Controller
     }
 
     /**
+     * 
+     * 
+     * 
+     */
+
+    /**
      * 参加者登録画面
      * 
      * @access public
@@ -140,6 +146,7 @@ class GuestController extends Controller
         // 来客データ取得
         $guest = Guest::where('guest_hash', $hash)->first();
         $this->isGuest($guest);
+        // print_r($guest->retuals);exit();
         $guest->retuals = explode(',', $guest->retuals);
         $guest->relations = explode(',', $guest->relations);
         $guest->groups = explode(',', $guest->groups);

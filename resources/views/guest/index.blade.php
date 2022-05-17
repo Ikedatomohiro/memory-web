@@ -15,7 +15,6 @@
     <tr>
       <td>
         <a href="">{{ $event['event_name'] }}</a>
-        
       </td>
       <td>今日</td>
       <td>明日</td>
