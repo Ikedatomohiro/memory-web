@@ -4,7 +4,8 @@
 <div>
     <div class="header">
         <p>来客者登録</p>
-        <a href="{{ route('events.show', ['event' => $event->event_hash]) }}">来客者一覧に戻る</a>
+        <p id="back">来客者一覧に戻る</p>
+        <a href="{{ route('events.show', ['event' => $event->event_hash]) }}" class="exexcute">来客者一覧に戻る</a>
     </div>
     <form action="{{ route('guest.store') }}" method="POST">
         @csrf

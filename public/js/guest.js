@@ -1,6 +1,6 @@
-$(function(){
-    var chkboxes = $( 'input[type=checkbox]' );
-    chkboxes.filter( ':checked' ).parent().css({
+$(function () {
+    var chkboxes = $('input[type=checkbox]');
+    chkboxes.filter(':checked').parent().css({
         'background-color': '#2a61fe',
         'color': '#ffffff',
     });
@@ -20,42 +20,48 @@ $('#zip_code').on('input', function () {
     if (result === true) {
         $.ajax({
             headers: {
-            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             url: "/zipcode",
             method: 'POST',
             data: {
-            'zipcode': zipcode
+                'zipcode': zipcode
             },
         })
-        //通信が成功したとき
-        .then((res) => {
-            console.log(res);
-            $('#address').val(res);
-        })
-        //通信が失敗したとき
-        .fail((error) => {
-            console.log(error.statusText);
-        });
+            //通信が成功したとき
+            .then((res) => {
+                console.log(res);
+                $('#address').val(res);
+            })
+            //通信が失敗したとき
+            .fail((error) => {
+                console.log(error.statusText);
+            });
     }
 });
 
-
-$('input[type="checkbox"]').on('click', function() {
+$('input[type="checkbox"]').on('click', function () {
     if ($(this).prop('checked')) {
         $(this).parent('.checkbox-label').animate({
-            'backgroundColor' : '#2a61fe',
+            'backgroundColor': '#2a61fe',
             'color': '#ffffff'
-          }, 200);
+        }, 200);
     } else {
         $(this).parent('.checkbox-label').animate({
-            'backgroundColor' : 'transparent',
+            'backgroundColor': 'transparent',
             'color': '#000000'
-          }, 200);
+        }, 200);
     }
 });
 
-$('.execution-button').on('click', function() {
-    console.log('clickclick');
+$('.execution-button').on('click', function () {
     $(this).next('.exexcute').trigger('click');
+});
+
+$('#back').on('click', function () {
+    var password = prompt('ユーザーパスワードを入力してください');
+    if (password !== null) {
+        event_hash = $('input[name="event_hash"]').val();
+        console.log(event_hash);
+    }
 });
