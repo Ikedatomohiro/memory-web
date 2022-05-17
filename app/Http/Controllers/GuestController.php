@@ -70,10 +70,14 @@ class GuestController extends Controller
     }
 
     /**
+     * 使用しない画面に遷移されたとき用
      * 
-     * 
-     * 
+     * @access public 
      */
+    public function index()
+    {
+        \Util::alertToPolice();
+    }
 
     /**
      * 参加者登録画面
