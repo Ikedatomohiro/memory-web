@@ -11,6 +11,7 @@ use App\Repositories\EventRepository;
 use App\Repositories\GuestRepository;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -36,10 +37,10 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $events = $this->events->forUser($request->user());
-        // print_r($events);exit();
         $param = [
-            'msg'    => '',
-            'events' => $events,
+            'msg'       => '',
+            'events'    => $events,
+            'user_hash' => Auth::user()->user_hash,
         ];
         return view('event.index', $param);
     }
@@ -98,8 +99,9 @@ class EventController extends Controller
              'del_flg'  => 0,]
             )->get();
         $param = [
-            'guests' => $guests,
-            'event'  => $event,
+            'guests'    => $guests,
+            'event'     => $event,
+            'user_hash' => Auth::user()->user_hash,
         ];
         return view('event.show', $param);
     }

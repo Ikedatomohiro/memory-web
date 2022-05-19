@@ -4,14 +4,26 @@
 <div>
     <div class="header">
         <p>来客者登録</p>
-        <p id="back">来客者一覧に戻る</p>
-        <a href="{{ route('events.show', ['event' => $event->event_hash]) }}" class="exexcute">来客者一覧に戻る</a>
+
+        <form action="{{ route('events.show', ['event' => $event->event_hash]) }}" method="GET">
+            <p id="execution-button">
+                <span class="button">
+                    来客者一覧に戻る
+                </span>
+            </p>
+            <input type="submit" id="execute" value="" style="display: none" />
+        </form>
     </div>
-    <form action="{{ route('guest.store') }}" method="POST">
+    <form id="guest-input" action="{{ route('guest.store') }}" method="POST">
         @csrf
-        @include('guest.input')
-        <p id="regist-btn" class="button">登録する</p>
-        <input type="submit" id="regist" value="" style="display: none" />
+        @method('post')
+    @include('guest.input')
+        <p id="execution-button">
+            <span class="button">
+                登録する
+            </span>
+        </p>
+        <input type="submit" id="execute" value="" style="display: none" />
     </form>
 </div>
 @endsection

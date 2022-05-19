@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Http\Requests\GuestRequest;
 use App\Repositories\GuestRepository;
 use App\Repositories\EventRepository;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class GuestController extends Controller
@@ -65,6 +66,7 @@ class GuestController extends Controller
             'retuals'         => $this->retualsList,
             'relations'       => $this->relationsList,
             'groups'          => $this->groupsList,
+            'user_hash'       => Auth::user()->user_hash,
         ];
         return $param;
     }

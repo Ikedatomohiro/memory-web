@@ -26,7 +26,7 @@
   </table>
 </div>
 <a href="{{ route('guest.create', ['event_hash' => $event->event_hash]) }}">参加者登録</a>
-<a href="/">ホーム</a>
+<a href="{{ route('home', ['user_hash' => $user_hash]) }}">ホーム</a>
 <a href="{{ route('guest.download', ['event_hash' => $event->event_hash]) }}">ダウンロード</a>
 
 <div class="footer">

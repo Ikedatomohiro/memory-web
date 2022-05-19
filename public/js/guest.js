@@ -30,7 +30,6 @@ $('#zip_code').on('input', function () {
         })
             //通信が成功したとき
             .then((res) => {
-                console.log(res);
                 $('#address').val(res);
             })
             //通信が失敗したとき
@@ -54,14 +53,15 @@ $('input[type="checkbox"]').on('click', function () {
     }
 });
 
-$('.execution-button').on('click', function () {
-    $(this).next('.exexcute').trigger('click');
-});
-
 $('#back').on('click', function () {
     var password = prompt('ユーザーパスワードを入力してください');
     if (password !== null) {
         event_hash = $('input[name="event_hash"]').val();
         console.log(event_hash);
     }
+});
+
+$('#execution-button').on('click', function () {
+    console.log('clicked');
+    $(this).next('#execute').trigger('click');
 });
