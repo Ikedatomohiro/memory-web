@@ -176,3 +176,12 @@ tr:last-child td {
 li, span, label, input, p {
     user-select: none;
 }
+
+.edit-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+

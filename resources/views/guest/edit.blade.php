@@ -12,6 +12,7 @@
         </form>
     </div>
     @include('guest.input')
+    <div class="edit-footer">
     <form id="guest-input" action="{{ route('guest.update', ['guest' => $guest->guest_hash]) }}" method="POST">
         @csrf
         @method('put')
@@ -23,10 +24,11 @@
     <form action="{{ route('guest.destroy', ['guest' => $guest->guest_hash]) }}" method="POST">
         @csrf
         @method('delete')
-        <span class="button delete-button">
+        <span class="button-s delete-button">
             来客削除する
         </span>
         <input type="submit" class="execute" value="" style="display: none" />
     </form>
+    </div>
 </div>
 @endsection
