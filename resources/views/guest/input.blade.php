@@ -1,8 +1,4 @@
 @section('head')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script>
-<script src="{{ asset('js/guest.js') }}" defer></script>
-<link rel="stylesheet" href="/css/guest_input.css">
 @endsection('head')
 <div>
     <p>

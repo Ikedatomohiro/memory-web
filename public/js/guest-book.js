@@ -62,5 +62,6 @@ $('#back').on('click', function () {
 });
 
 $('.execution-button').on('click', function () {
+    console.log('clicked');
     $(this).next('.execute').trigger('click');
 });

@@ -4,7 +4,6 @@
 <div>
     <div class="header">
         <p>来客者登録</p>
-
         <form action="{{ route('events.show', ['event' => $event->event_hash]) }}" method="GET">
             <p class="execution-button">
                 <span class="button">
