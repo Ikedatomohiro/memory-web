@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('title', '来客リスト')
+@section('head')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script>
+<script src="{{ asset('js/guest-book.js') }}" defer></script>
+<link rel="stylesheet" href="/css/guest-book.css">
+@endsection('head')
+
 @section('content')
 
 <div>

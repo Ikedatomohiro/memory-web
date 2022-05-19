@@ -259,9 +259,9 @@ class GuestController extends Controller
      */
     public function destroy(Request $request)
     {
+        $guest = Guest::where('guest_hash', $request->guest)->first();
         Guest::where('guest_hash', $request->guest)->update(['del_flg' => 1]);
-
-
+        return redirect(route('events.show', ['event' => $guest->event->event_hash]));
     }
 
     /**

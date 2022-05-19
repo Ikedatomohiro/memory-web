@@ -5,11 +5,9 @@
     <div class="header">
         <p>参加者詳細</p>
         <form action="{{ route('events.show', ['event' => $event->event_hash]) }}" method="GET">
-            <p class="execution-button">
-                <span class="button">
-                    来客者一覧に戻る
-                </span>
-            </p>
+            <span class="button-s execution-button">
+                来客者一覧に戻る
+            </span>
             <input type="submit" class="execute" value="" style="display: none" />
         </form>
     </div>
@@ -17,21 +15,17 @@
     <form id="guest-input" action="{{ route('guest.update', ['guest' => $guest->guest_hash]) }}" method="POST">
         @csrf
         @method('put')
-        <p class="execution-button">
-            <span class="button">
-                更新する
-            </span>
-        </p>
+        <span class="button execution-button">
+            更新する
+        </span>
         <input type="submit" class="execute" value="" style="display: none" />
     </form>
     <form action="{{ route('guest.destroy', ['guest' => $guest->guest_hash]) }}" method="POST">
         @csrf
         @method('delete')
-        <p class="execution-button">
-            <span class="button">
-                来客削除する
-            </span>
-        </p>
+        <span class="button delete-button">
+            来客削除する
+        </span>
         <input type="submit" class="execute" value="" style="display: none" />
     </form>
 </div>

@@ -83,11 +83,11 @@ tr:last-child td {
     color: white;
 }
 
-.button, .button-s:hover {
+.button:hover, .button-s:hover {
     cursor: pointer;
 }
 
-.button, .button-s:active {
+.button:active, .button-s:active {
     background-color: cornflowerblue;
 }
 

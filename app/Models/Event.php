@@ -22,11 +22,11 @@ class Event extends Model
      */
     public function guests()
     {
-        return $this->hasMany(Guest::class, 'event_id');
+        return $this->hasMany(Guest::class, 'event_id', 'event_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 }

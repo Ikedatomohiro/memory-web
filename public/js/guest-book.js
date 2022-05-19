@@ -61,7 +61,14 @@ $('#back').on('click', function () {
     }
 });
 
-$('.execution-button').on('click', function () {
-    console.log('clicked');
-    $(this).next('.execute').trigger('click');
+$('.delete-button').on('click', function () {
+    if (confirm('削除してもよろしいですか？')) {
+        $(this).next('.execute').trigger('click');
+    }
 });
+
+$('.execution-button').on('click', function () {
+        console.log('exec');
+        $(this).next('.execute').trigger('click');
+});
+
