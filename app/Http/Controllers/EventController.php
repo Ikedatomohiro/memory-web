@@ -36,6 +36,7 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
+        $this->isUser($request);
         $events = $this->events->forUser($request->user());
         $param = [
             'msg'       => '',
@@ -127,5 +128,17 @@ class EventController extends Controller
         return redirect('/events');
     }
 
-
+    /**
+     * Userの存在チェック
+     * 
+     * @access public
+     * @return void
+     */
+    public function isUser(Request $request)
+    {
+        if ($request->user_hash != Auth::user()->user_hash) {
+            \Util::alertToPolice();
+        }
+        return;
+    }
 }
