@@ -19,18 +19,28 @@
     </div>
     <table>
         <tr>
-            <th>参加者</th>
-            <th>登録日</th>
+            <th>ご芳名</th>
+            <th>会社名</th>
             <th>参加儀式</th>
+            <th>ご関係</th>
+            <th>ご所属</th>
+            <th>登録日</th>
             <th>操作</th>
         </tr>
         @foreach ($guests as $guest)
-        <tr>
+        <tr class="guest-record">
             <td>
-                <a href="{{ route('guest.edit', ['guest' => $guest->guest_hash]) }}">{{ $guest->guest_name }}</a>
+                {{ $guest->guest_name }}
             </td>
-            <td>今日</td>
             <td>
+                {{ $guest->company_name }}
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a href="{{ route('guest.edit', ['guest' => $guest->guest_hash]) }}" class="execute"></a>
             </td>
         </tr>
         @endforeach
