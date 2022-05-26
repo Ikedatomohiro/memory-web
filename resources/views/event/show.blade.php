@@ -54,15 +54,13 @@
         </tr>
         @endforeach
     </table>
-    <div>
+    <div class="bottom-button">
         <form action="{{ route('home', ['user_hash' => $user_hash]) }}" method="GET">
             <span class="button-s execution-button">
                 イベント一覧
             </span>
             <input type="submit" class="execute" value="" style="display: none" />
         </form>
-    </div>
-    <div>
         <form action="{{ route('guest.download', ['event_hash' => $event->event_hash]) }}" method="GET">
             <span class="button-s execution-button">
                 ダウンロード
