@@ -110,8 +110,17 @@ class EventController extends Controller
     /**
      * イベント編集
      */
-    public function edit(Request $request)
+    public function edit(Request $request, $event_hash)
     {
+        $event = $this->events->getEvent($event_hash);
+        if (!isset($event->event_id)) {
+            \Util::alertToPolice();
+        }
+        $param = [
+            'event'     => $event,
+            'user_hash' => Auth::user()->user_hash,
+        ];
+        return view('event.edit', $param);
     }
 
     /**

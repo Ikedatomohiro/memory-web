@@ -34,7 +34,7 @@
         </div>
     </div>
     <div>
-
+        検索
     </div>
     <table>
         <tr>
@@ -93,8 +93,6 @@
             </span>
             <input type="submit" class="execute" value="" style="display: none" />
         </form>
-
-
     </div>
 </div>
 
