@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <div class="header">
-        <p>来客者登録</p>
+        <p>来客者新規登録</p>
         <form action="{{ route('events.show', ['event' => $event->event_hash]) }}" method="GET">
             <span class="button-s execution-button">
                 来客者一覧に戻る

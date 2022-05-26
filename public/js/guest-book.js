@@ -73,11 +73,9 @@ $('.delete-button').on('click', function () {
 });
 
 $('.execution-button').on('click', function () {
-        console.log('exec');
         $(this).next('.execute').trigger('click');
 });
 
-$('.guest-record').on('click', function() {
-    console.log('sljlkjljflsjkl');
+$('.record').on('click', function() {
     $(this).find('.execute').get(0).click();
 });

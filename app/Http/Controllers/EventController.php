@@ -108,6 +108,13 @@ class EventController extends Controller
     }
 
     /**
+     * イベント編集
+     */
+    public function edit(Request $request)
+    {
+    }
+
+    /**
      * イベント削除（論理削除）
      * 
      * @access public
@@ -125,7 +132,7 @@ class EventController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
         }
-        return redirect('/events');
+        return redirect(route('home', Auth::user()->user_hash));
     }
 
     /**

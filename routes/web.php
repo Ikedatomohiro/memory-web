@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // イベント情報
-Route::resource('events', 'App\Http\Controllers\EventController', ['only' => ['index', 'show', 'create', 'edit', 'store', 'destroy']]);
+Route::resource('events', 'App\Http\Controllers\EventController', ['only' => ['show', 'create', 'edit', 'store', 'destroy']]);
 Route::get('/{user_hash}/events', [App\Http\Controllers\EventController::class, 'index'])->name('home');
 
 // 来客情報

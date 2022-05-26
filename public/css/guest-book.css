@@ -101,6 +101,10 @@ tr:last-child td {
     text-align: right;
 }
 
+.header-right {
+    display: flex;
+}
+
 .back-button {
     margin-left: auto;
 }
@@ -178,7 +182,7 @@ li, span, label, input, p {
     justify-content: space-between;
 }
 
-.guest-record:hover {
+.record:hover {
     background-color: #ffc0cb;
     cursor: pointer;
 }

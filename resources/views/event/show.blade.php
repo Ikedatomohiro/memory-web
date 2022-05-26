@@ -9,15 +9,32 @@
 @inject('util', 'App\Lib\Util')
 @inject('guestConst', 'App\Const\GuestConst')
 @section('content')
-
 <div class="container">
-    <div class="">
+    <div class="header">
+        <p>{{ $event->event_name }} 来客一覧</p>
         <form action="{{ route('guest.create', ['event_hash' => $event->event_hash]) }}" method="GET">
             <span class="button-s execution-button">
-                参加者登録
+                参加者新規登録
             </span>
             <input type="submit" class="execute" value="" style="display: none" />
         </form>
+        <div class="header-right">
+            <form action="{{ route('events.edit', ['event' => $event->event_hash]) }}" method="GET">
+                <span class="button-s execution-button">
+                    イベント情報を編集する
+                </span>
+                <input type="submit" class="execute" value="" style="display: none" />
+            </form>
+            <form action="{{ route('home', ['user_hash' => $user_hash]) }}" method="GET">
+                <span class="button-s execution-button">
+                    イベント一覧に戻る
+                </span>
+                <input type="submit" class="execute" value="" style="display: none" />
+            </form>
+        </div>
+    </div>
+    <div>
+
     </div>
     <table>
         <tr>
@@ -29,7 +46,7 @@
             <th width="20%">ご所属</th>
         </tr>
         @foreach ($guests as $guest)
-        <tr class="guest-record">
+        <tr class="record">
             <td align="center">
                 {{ $loop->iteration }}
             </td>
@@ -53,20 +70,31 @@
             </td>
         </tr>
         @endforeach
+        @if (count($guests) == 0)
+        <tr>
+            <td colspan="6" align="center">
+                参加者は未登録です
+            </td>
+        </tr>
+        @endif
     </table>
     <div class="bottom-button">
-        <form action="{{ route('home', ['user_hash' => $user_hash]) }}" method="GET">
-            <span class="button-s execution-button">
-                イベント一覧
-            </span>
-            <input type="submit" class="execute" value="" style="display: none" />
-        </form>
         <form action="{{ route('guest.download', ['event_hash' => $event->event_hash]) }}" method="GET">
             <span class="button-s execution-button">
-                ダウンロード
+                一覧をダウンロード
             </span>
             <input type="submit" class="execute" value="" style="display: none" />
         </form>
+        <form action="{{ route('events.show', ['event' => $event->event_hash]) }}" method="POST">
+            @csrf
+            @method('delete')
+            <span class="button-s execution-button delete-button">
+                イベントを削除する
+            </span>
+            <input type="submit" class="execute" value="" style="display: none" />
+        </form>
+
+
     </div>
 </div>
 
