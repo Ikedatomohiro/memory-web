@@ -91,6 +91,7 @@
         <input type="hidden" name="event_hash" value="{{ $event->event_hash }}" form="guest-input">
     </p>
 </div>
+<input type="hidden" id="stored" value="{{ $stored }}" />
 @foreach ($errors->all() as $error)
 <p>{{ $error }}</p>
 @endforeach

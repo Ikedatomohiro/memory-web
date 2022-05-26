@@ -6,23 +6,20 @@ td {
 
 table {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     /* display: block; */
     overflow-x: auto;
     border-spacing: 0;
-}
-
-tbody {
-    white-space: nowrap;
+    table-layout: fixed;
 }
 
 th,
 td {
     padding: 5px 10px;
-    border-top-width: 0;
+    /* border-top-width: 0; */
     border-left-width: 0;
-}
+    word-wrap: break-word;}
 
 th {
     position: sticky;

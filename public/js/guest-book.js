@@ -4,6 +4,11 @@ $(function () {
         'background-color': '#2a61fe',
         'color': '#ffffff',
     });
+
+    var stored = $('#stored').val();
+    if (stored == 'true') {
+        alert('登録が完了しました。');
+    }
 });
 
 $('.delete, .delete-s').on('click', function () {

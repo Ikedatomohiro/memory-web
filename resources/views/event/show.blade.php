@@ -21,14 +21,18 @@
     </div>
     <table>
         <tr>
+            <th width="10%">No</th>
             <th width="20%">ご芳名</th>
-            <th width="30%">会社名</th>
+            <th width="20%">会社名</th>
             <th width="20%">参加儀式</th>
-            <th width="15%">ご関係</th>
-            <th width="15%">ご所属</th>
+            <th width="20%">ご関係</th>
+            <th width="20%">ご所属</th>
         </tr>
         @foreach ($guests as $guest)
         <tr class="guest-record">
+            <td align="center">
+                {{ $loop->iteration }}
+            </td>
             <td>
                 {{ $guest->guest_name }}
             </td>

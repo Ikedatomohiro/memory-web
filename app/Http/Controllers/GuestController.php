@@ -39,7 +39,7 @@ class GuestController extends Controller
             'guest'           => new Guest(),
             'relations_other' => '',
             'groups_other'    => '',
-            'stored'          => false,
+            'stored'          => 'false',
             'retuals'         => GuestConst::RETUALS,
             'relations'       => GuestConst::RELATIONS,
             'groups'          => GuestConst::GROUPS,
@@ -114,7 +114,7 @@ class GuestController extends Controller
             'groups'          => !is_null($request->groups) ? implode(',', $request->groups) : null,
             'groups_other'    => $request->groups_other,
         ]);
-        $param['stored'] = true;
+        $param['stored'] = 'true';
         return view('guest.create', $param);
     }
 
