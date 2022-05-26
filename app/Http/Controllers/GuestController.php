@@ -10,33 +10,10 @@ use App\Repositories\GuestRepository;
 use App\Repositories\EventRepository;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use App\Const\GuestConst;
 
 class GuestController extends Controller
 {
-    var $retualsList = [
-        '通夜',
-        '告別式',
-    ];
-
-    var $relationsList = [
-        '故人様',
-        '喪主様',
-        'ご家族',
-        'その他',
-    ];
-
-    var $groupsList = [
-        '会社関係',
-        'お取引先',
-        '学校関係',
-        '官公庁',
-        '各種団体',
-        '町内会',
-        'ご友人',
-        'ご親戚',
-        'その他',
-    ];
-
     /**
      * コンストラクタ
      *
@@ -63,9 +40,9 @@ class GuestController extends Controller
             'relations_other' => '',
             'groups_other'    => '',
             'stored'          => false,
-            'retuals'         => $this->retualsList,
-            'relations'       => $this->relationsList,
-            'groups'          => $this->groupsList,
+            'retuals'         => GuestConst::RETUALS,
+            'relations'       => GuestConst::RELATIONS,
+            'groups'          => GuestConst::GROUPS,
             'user_hash'       => Auth::user()->user_hash,
         ];
         return $param;
@@ -152,7 +129,6 @@ class GuestController extends Controller
         // 来客データ取得
         $guest = Guest::where('guest_hash', $hash)->first();
         $this->isGuest($guest);
-        // print_r($guest->retuals);exit();
         $guest->retuals = explode(',', $guest->retuals);
         $guest->relations = explode(',', $guest->relations);
         $guest->groups = explode(',', $guest->groups);

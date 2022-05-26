@@ -34,6 +34,27 @@ class Util
         sleep(2);
         echo '警察に通報しました。連絡をお待ちください。';exit();
     }
+
+    /**
+     * カンマ区切り数字を文字に変換
+     * 
+     * @access public
+     */
+    public function arrayValue($list, $array) {
+        $string = '';
+        if (!is_array($array)) {
+            return $string;
+        }
+        $val = array();
+        $keys = explode(',', $list);
+        foreach ($keys as $index => $key) {
+            if (array_key_exists($key, $array)) {
+                $val[] = $array[$key];
+            }
+        }
+        $string = implode('・', $val);
+        return $string;
+    }
 }
 
 

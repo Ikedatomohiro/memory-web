@@ -6,6 +6,8 @@
 <script src="{{ asset('js/guest-book.js') }}" defer></script>
 <link rel="stylesheet" href="/css/guest-book.css">
 @endsection('head')
+@inject('util', 'App\Lib\Util')
+@inject('guestConst', 'App\Const\GuestConst')
 @section('content')
 
 <div class="container">
@@ -19,18 +21,31 @@
     </div>
     <table>
         <tr>
-            <th>参加者</th>
-            <th>登録日</th>
-            <th>参加儀式</th>
-            <th>操作</th>
+            <th width="20%">ご芳名</th>
+            <th width="30%">会社名</th>
+            <th width="20%">参加儀式</th>
+            <th width="15%">ご関係</th>
+            <th width="15%">ご所属</th>
         </tr>
         @foreach ($guests as $guest)
-        <tr>
+        <tr class="guest-record">
             <td>
-                <a href="{{ route('guest.edit', ['guest' => $guest->guest_hash]) }}">{{ $guest->guest_name }}</a>
+                {{ $guest->guest_name }}
             </td>
-            <td>今日</td>
             <td>
+                {{ $guest->company_name }}
+            </td>
+            <td>
+                {{ $util->arrayValue($guest->retuals, $guestConst::RETUALS) }}
+            </td>
+            <td>
+                {{ $util->arrayValue($guest->relations, $guestConst::RELATIONS) }}&nbsp;
+                {{ $guest->relations_other }}
+            </td>
+            <td>
+                {{ $util->arrayValue($guest->groups, $guestConst::GROUPS) }}&nbsp;
+                {{ $guest->groups_other }}
+                <a href="{{ route('guest.edit', ['guest' => $guest->guest_hash]) }}" class="execute"></a>
             </td>
         </tr>
         @endforeach

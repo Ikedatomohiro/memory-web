@@ -70,7 +70,7 @@ class EventController extends Controller
                                     $event_request->messages(),
         );
         if ($validator->fails()) {
-            return redirect('/events')
+        return redirect(route('home', ['user_hash' => Auth::user()->user_hash]))
                             ->withErrors($validator)
                             ->withInput();
         }
@@ -80,7 +80,7 @@ class EventController extends Controller
             'event_hash' => \Util::createHash($request->new_event_name),
             'user_id'    => $request->user()->id,
         ]);
-        return redirect('/events');
+        return redirect(route('home', ['user_hash' => Auth::user()->user_hash]));
     }
 
     /**

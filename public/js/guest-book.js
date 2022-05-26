@@ -72,3 +72,7 @@ $('.execution-button').on('click', function () {
         $(this).next('.execute').trigger('click');
 });
 
+$('.guest-record').on('click', function() {
+    console.log('sljlkjljflsjkl');
+    $(this).find('.execute').get(0).click();
+});

@@ -7,9 +7,8 @@ td {
 table {
     width: 100%;
     max-width: 800px;
-    /* height: 240px; */
     margin: 0 auto;
-    display: block;
+    /* display: block; */
     overflow-x: auto;
     border-spacing: 0;
 }
@@ -182,6 +181,7 @@ li, span, label, input, p {
     justify-content: space-between;
 }
 
-
-
-
+.guest-record:hover {
+    background-color: bisque;
+    cursor: pointer;
+}
