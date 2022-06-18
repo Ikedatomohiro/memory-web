@@ -219,3 +219,31 @@ li, span, label, input, p {
     display: flex;
     justify-content: space-between;
 }
+
+.operation {
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 100px;
+}
+
+.new-icon {
+    background-image: url('../img/new.svg');
+    background-repeat: no-repeat;
+}
+
+.garbage-icon {
+    background-image: url('../img/garbage-can.svg');
+    background-repeat: no-repeat;
+}
+
+.edit-icon {
+    background-image: url('../img/edit.svg');
+    background-repeat: no-repeat;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+}
