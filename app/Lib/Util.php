@@ -40,7 +40,8 @@ class Util
      * 
      * @access public
      */
-    public function arrayValue($list, $array) {
+    public function arrayValue($list, $array)
+    {
         $string = '';
         if (!is_array($array)) {
             return $string;

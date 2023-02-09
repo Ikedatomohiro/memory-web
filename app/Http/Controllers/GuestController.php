@@ -10,7 +10,7 @@ use App\Repositories\GuestRepository;
 use App\Repositories\EventRepository;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use App\Const\GuestConst;
+use App\Constant\GuestConst;
 
 class GuestController extends Controller
 {
@@ -55,6 +55,7 @@ class GuestController extends Controller
      */
     public function index()
     {
+        echo 'fa;lkfjd';exit();
         \Util::alertToPolice();
     }
 

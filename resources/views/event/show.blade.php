@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/css/guest-book.css">
 @endsection('head')
 @inject('util', 'App\Lib\Util')
-@inject('guestConst', 'App\Const\GuestConst')
+@inject('guestConst', 'App\Constant\GuestConst')
 @section('content')
 <div class="container">
     <div class="header">

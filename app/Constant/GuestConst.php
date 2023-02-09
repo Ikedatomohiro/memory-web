@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Const;
+namespace App\Constant;
 
 class GuestConst
 {
@@ -22,11 +22,10 @@ class GuestConst
     public const GOKAZOKU        = '3';
     public const RELATION_SONOTA = '4';
     public const RELATIONS = [
-        self:: KOJINSAMA      => '故人様',
+        self::KOJINSAMA       => '故人様',
         self::MOSYUSAMA       => '喪主様',
         self::GOKAZOKU        => 'ご家族',
         self::RELATION_SONOTA => 'その他',
-
     ];
 
     /**

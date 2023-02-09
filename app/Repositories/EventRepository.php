@@ -85,7 +85,7 @@ class EventRepository
         $event = Event::where([
             'event_hash' => $hash,
             'del_flg'    => 0,
-            ])->first();
+        ])->first();
         return $event;
     }
 

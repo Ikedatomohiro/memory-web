@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
+    var $events;
+    var $guests;
+
     /**
      * コンストラクタ
      *
@@ -36,7 +39,6 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $this->isUser($request);
         $events = $this->events->forUser($request->user());
         $param = [
             'msg'       => '',
@@ -132,6 +134,7 @@ class EventController extends Controller
      */
     public function destroy($event_hash)
     {
+        echo 'asdjf;kl';exit();
         $event = Event::where('event_hash', $event_hash)->first();
         DB::beginTransaction();
         try {
