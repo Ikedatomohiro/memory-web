@@ -126,6 +126,32 @@ class EventController extends Controller
     }
 
     /**
+     * イベント更新
+     * 
+     * 
+     */
+    public function update(Request $request, $event_hash)
+    {
+        // $event_request = new EventRequest();
+        // $validator = Validator::make($request->all(),
+        //                             $event_request->rules(),
+        //                             $event_request->messages(),
+        // );
+        // var_dump($validator->fails());exit();
+        // if ($validator->fails()) {
+        // return redirect(route('home', ['user_hash' => Auth::user()->user_hash]))
+        //                     ->withErrors($validator)
+        //                     ->withInput();
+        // }
+        print_r($event_hash);
+        print_r($request->event_name);exit();
+        Event::updated([
+            'event_name' => $request->event_name,
+        ]);
+        return redirect(route('home', ['user_hash' => Auth::user()->user_hash]));
+    }
+
+    /**
      * イベント削除（論理削除）
      * 
      * @access public
@@ -134,7 +160,6 @@ class EventController extends Controller
      */
     public function destroy($event_hash)
     {
-        echo 'asdjf;kl';exit();
         $event = Event::where('event_hash', $event_hash)->first();
         DB::beginTransaction();
         try {

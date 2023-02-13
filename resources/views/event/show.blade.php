@@ -19,12 +19,14 @@
             <input type="submit" class="execute" value="" style="display: none" />
         </form>
         <div class="header-right">
+            {{--
             <form action="{{ route('events.edit', ['event' => $event->event_hash]) }}" method="GET">
                 <span class="button-s execution-button">
                     イベント情報を編集する
                 </span>
                 <input type="submit" class="execute" value="" style="display: none" />
             </form>
+            --}}
             <form action="{{ route('home', ['user_hash' => $user_hash]) }}" method="GET">
                 <span class="button-s execution-button">
                     イベント一覧に戻る
@@ -33,9 +35,16 @@
             </form>
         </div>
     </div>
+
+
+    {{--
+
     <div>
         検索
     </div>
+
+            --}}
+
     <table>
         <tr>
             <th width="10%">No</th>
