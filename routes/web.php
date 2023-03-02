@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Top
+Route::get('/', function () {
+    return view('top');
+});
 
 // イベント情報
 Route::resource('events', 'App\Http\Controllers\EventController', ['only' => ['show', 'create', 'edit', 'store', 'update','destroy']]);

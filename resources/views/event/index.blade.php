@@ -17,6 +17,7 @@
             <th>登録日</th>
             <th>開催日</th>
             <th>参加人数</th>
+            <th>操作</th>
         </tr>
         @foreach ($events as $event)
         <tr class="record">
@@ -32,6 +33,19 @@
             <td align="center">
                 {{ $event->guest_count }} 名
                 <a href="{{ route('events.show', ['event' => $event->event_hash]) }}" class="execute"></a>
+            </td>
+            <td class="operetion-td">
+                <p class="operation">
+                    <span class="icon new-icon" title="参加者登録">
+
+                    </span>
+                    <span class="icon edit-icon"></span>
+                    <form action="{{ route('events.edit', ['event' => $event->event_hash]) }}" method="GET">
+                        <span class="icon garbage-icon"></span>
+                        <input type="submit" class="execute" value="" style="display: none" />
+                    </form>
+
+                </p>
             </td>
         </tr>
         @endforeach

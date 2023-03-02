@@ -76,6 +76,6 @@ $('.execution-button').on('click', function () {
         $(this).next('.execute').trigger('click');
 });
 
-$('.record').on('click', function() {
+$('.record td').on('click', function() {
     $(this).find('.execute').get(0).click();
 });
