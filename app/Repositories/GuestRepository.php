@@ -14,7 +14,6 @@ class GuestRepository
      */
     public function forEvent(Event $event)
     {
-        echo 'sslssllsls';exit();
         return $event->guests()
             ->orderBy('created_at', 'asc')
             ->get();

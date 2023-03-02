@@ -22,7 +22,7 @@ Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->n
 Route::resource('guest', 'App\Http\Controllers\GuestController', ['only' => ['index', 'show', 'edit', 'store', 'update', 'destroy']]);
 Route::get('/guest/create/{event_hash}', [App\Http\Controllers\GuestController::class, 'create'])->name('guest.create');
 // 来客情報CSVダウンロード
-Route::get('/guest/download/{event_hash}', [App\Http\Controllers\GuestController::class, 'download'])->name('guest.download');
+Route::post('/guest/download/{event_hash}', [App\Http\Controllers\GuestController::class, 'download'])->name('guest.download');
 
 // 権限コントローラ
 Auth::routes();

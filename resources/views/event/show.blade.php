@@ -88,7 +88,9 @@
         @endif
     </table>
     <div class="bottom-button">
-        <form action="{{ route('guest.download', ['event_hash' => $event->event_hash]) }}" method="GET">
+        <form action="{{ route('guest.download', ['event_hash' => $event->event_hash]) }}" method="POST">
+            @csrf
+            @method('post')
             <span class="button-s execution-button">
                 一覧をダウンロード
             </span>
